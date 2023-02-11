@@ -1,7 +1,6 @@
 package AlphabetsForChiper;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class CyrillicAlphabetForCipher {
     private static final CyrillicAlphabetForCipher CYRILLIC_ALPHABET_FOR_CIPHER = new CyrillicAlphabetForCipher();
@@ -20,17 +19,19 @@ public class CyrillicAlphabetForCipher {
         setSymbolsCodes();
         setCyrillicAlphabetCodes();
     }
-
+    //Create one object instance of cyrillic alphabet
     public static CyrillicAlphabetForCipher getInstance(){
         return CYRILLIC_ALPHABET_FOR_CIPHER;
     }
 
+    //Merge cyrillic alphabet codes with general symbols codes and return new object instance
     public ArrayList<Integer> getCyrillicAlphabetCodesAndSymbols(){
         CYRILLIC_ALPHABET_CODES_AND_SYMBOLS.addAll(CYRILLIC_ALPHABET_CODES);
         CYRILLIC_ALPHABET_CODES_AND_SYMBOLS.addAll(SYMBOLS);
         return new ArrayList<>(CYRILLIC_ALPHABET_CODES_AND_SYMBOLS);
     }
 
+    //Fill in cyrillic alphabet codes
     private void setCyrillicAlphabetCodes(){
         CYRILLIC_ALPHABET_CODES.add(YO_IN_UPPER_CODE);
         CYRILLIC_ALPHABET_CODES.add(YO_IN_LOWER_CODE);
@@ -39,6 +40,7 @@ public class CyrillicAlphabetForCipher {
         }
     }
 
+    //Fill in general symbols codes
     private void setSymbolsCodes(){
         for (int i = START_SYMBOLS_CODE; i <= END_SYMBOLS_CODE; i++) {
             SYMBOLS.add(i);
