@@ -36,5 +36,11 @@ public class CaesarCipher {
 
     }
 
-    //private static
+    public static void startEncode(){
+        System.out.println("Enter a file which you want to encode");
+    }
+
+    public static void startDecode(){
+
+    }
 }
