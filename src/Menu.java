@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Menu {
+    //TODO Maybe delete this parametr
     private final static int MENU_ITEMS_COUNT = 4;
 
     public static void menu(){
@@ -16,7 +17,7 @@ public class Menu {
             printMenu();
             inputItem = input.nextLine();
         }
-
+        System.out.println(inputItem);
     }
 
     private static void printWelcomeMessage() {
@@ -39,5 +40,9 @@ public class Menu {
             default -> false;
         };
         return result;
+    }
+
+    private static void startChoosenOption(){
+
     }
 }
