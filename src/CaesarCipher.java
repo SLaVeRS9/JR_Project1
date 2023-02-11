@@ -5,10 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
 
 public class CaesarCipher {
     AlphabetForCiper alphabetForCipher;
@@ -38,6 +37,8 @@ public class CaesarCipher {
 
     public static void startEncode(){
         System.out.println("Enter a file which you want to encode");
+        Scanner input = new Scanner(System.in);
+        String inputPath = input.nextLine();
     }
 
     public static void startDecode(){

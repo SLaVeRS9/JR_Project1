@@ -9,18 +9,17 @@ public class Menu {
         printWelcomeMessage();
         printMenu();
         Scanner input = new Scanner(System.in);
-        String choosenItem = input.nextLine();
-        while (!isMenuItemCorrect(choosenItem)){
-            if (choosenItem.equalsIgnoreCase("4")){
+        String selectedItem = input.nextLine();
+        while (!isMenuItemCorrect(selectedItem)){
+            if (selectedItem.equalsIgnoreCase("4")){
                 System.exit(0);
             }
             System.out.println("\nWrong menu item\nTry again\n");
-            Logger logger;
-            logger.log("\nWrong menu item\nTry again\n");
             printMenu();
-            choosenItem = input.nextLine();
+            selectedItem = input.nextLine();
         }
-        System.out.println(choosenItem);
+        input.close();
+        startSelectedOption(selectedItem);
     }
 
     private static void printWelcomeMessage() {
@@ -45,8 +44,9 @@ public class Menu {
         return result;
     }
 
-    private static void startChoosenOption(String choosenItem){
-        switch(choosenItem){
+    //TODO Write when all options will be develop
+    private static void startSelectedOption(String selectedItem){
+        switch(selectedItem){
             case "1" -> CaesarCipher.startEncode();
             case "2" -> CaesarCipher.startDecode();
             case "3" -> ;
