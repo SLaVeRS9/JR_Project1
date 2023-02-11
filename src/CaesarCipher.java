@@ -1,20 +1,40 @@
-import AlphabetsForChiper.CyrillicAlphabetForCipher;
+import AlphabetsForCiper.AlphabetForCiper;
+import AlphabetsForCiper.CyrillicAlphabetForCipher;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 public class CaesarCipher {
-    CyrillicAlphabetForCipher cyrillicAlphabetForCipher;
+    AlphabetForCiper alphabetForCipher;
+    private static int shift;
 
-    private final static char[] VALID_CHARACTERS = {'А', 'b'};
-    private final static Set<Character> VALID_CHARACTERS1 = new HashSet();
-    private final static ArrayList<Character> VALID_CHARACTERS2 = new ArrayList<>();
+    private CaesarCipher(){}
 
-    public static void encoder(){
+    static void encoder(int shift, String pathToEncodingFile){
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile(pathToEncodingFile, "r");
+                FileChannel channel = randomAccessFile.getChannel()) {
+            Path path = Path.of(pathToEncodingFile);
+            path.getFileName();
+            ByteBuffer byteBuffer = ByteBuffer.allocate((int) channel.size());
+            channel.read(byteBuffer);
+
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        CyrillicAlphabetForCipher cyrillicAlphabetForCipher = CyrillicAlphabetForCipher.getInstance();
+    }
+    static void decoder(){
 
     }
-    public static void decoder(){
 
-    }
+    //private static
 }
