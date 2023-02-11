@@ -33,21 +33,33 @@ public class Main {
         System.out.println((int)A);
         System.out.println(res);
 
-        Scanner input = new Scanner(System.in);
+        /*Scanner input = new Scanner(System.in);
         Path path = Path.of(input.nextLine());
+        System.out.println(path.getFileName());*/
 
-        try () {
+        /*Scanner input = new Scanner(System.in);
+
+        while (!input.hasNextInt() || input.nextInt() > 4 || input.nextInt() < 0){
+            System.out.println("Wrong menu item");
+            input.nextLine();
+            System.out.println("Write 'exit' or 'e' if you want to exit");
+            if (input.next().equalsIgnoreCase("exit") || input.next().equalsIgnoreCase("e")){
+                System.exit(0);
+            }
+        }*/
+
+        /*try () {
 
             System.out.println(path.getFileName());
-            System.out.println(path.getParent());
-            ByteBuffer byteBuffer = ByteBuffer.allocate((int) channel.size());
-            channel.read(byteBuffer);
+
 
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
+
+        Menu.menu();
     }
 }
