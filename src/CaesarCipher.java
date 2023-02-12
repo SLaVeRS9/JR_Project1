@@ -11,34 +11,59 @@ import java.util.Scanner;
 
 public class CaesarCipher {
     AlphabetForCiper alphabetForCipher;
-    private static int shift;
+    //private static int cipherStep; - скорее всего убрать из параметров класса
 
     private CaesarCipher(){}
 
-    static void encoder(int shift, String pathToEncodingFile){
-        try (RandomAccessFile randomAccessFile = new RandomAccessFile(pathToEncodingFile, "r");
-                FileChannel channel = randomAccessFile.getChannel()) {
-            Path path = Path.of(pathToEncodingFile);
-            path.getFileName();
-            ByteBuffer byteBuffer = ByteBuffer.allocate((int) channel.size());
-            channel.read(byteBuffer);
+    //Sheme for future
+    static void encoder(int shift, String pathToEncodingFile){}
 
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    static void encoder(int shift, byte[] encodingData){
+        byte[] encodeData = new byte[encodingData.length];
+        
+        //Перекодировать побитово
+        for (int i = 0; i < encodingData.length; i++) {
+            char temp = (char) encodingData[i];
+            encodeData[i] = encodingData[i];
         }
-        CyrillicAlphabetForCipher cyrillicAlphabetForCipher = CyrillicAlphabetForCipher.getInstance();
-    }
+        for (byte b : encodingData) {
+            
+        }
+        //вернуть массив закодированный
+        
+        
+    } 
+
     static void decoder(){
 
     }
 
     public static void startEncode(){
-        System.out.println("Enter a file which you want to encode");
+
+        //Get path to file
+        System.out.println("Enter path to file which you want to encode");
         Scanner input = new Scanner(System.in);
         String inputPath = input.nextLine();
+        WorkWithFiles.validatePath(inputPath);
+
+        //Get data from file
+        byte[] dataFromFile = WorkWithFiles.readDataFromFile(Path.of(inputPath));
+        
+        //Get shift for encoder
+        System.out.println("Enter step to file which you want to encode");
+        
+        while(!input.hasNextInt()){
+            if (input.nextLine().equalsIgnoreCase("exit")){
+                System.exit(0);
+            }
+            System.out.println("Entered incorrect value (it must be a positive integer)");
+            System.out.print("Try again or write 'exit' to quit: ");
+        }
+        int cipherStep = input.nextInt();
+
+        //Start encoding
+        encoder(cipherStep, dataFromFile);
+        
     }
 
     public static void startDecode(){

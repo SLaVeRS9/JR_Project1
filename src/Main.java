@@ -22,16 +22,16 @@ public class Main {
 
         System.out.println();
 
-        Character[] chars = {'А', 'Б', 'а', 'б', 122};
-        char[] chars2 = {'А', 'Б', 'а', 'б', 122};
+        /* Character[] chars = {'Рђ', 'Р‘', 'Р°', 'Р±', 122};
+        char[] chars2 = {'Рђ', 'Р‘', 'Р°', 'Р±', 122};
         char res = 1041;
-        char A = 'А';
-        char a = 'а';
+        char A = 'Рђ';
+        char a = 'Р°';
         int res2 = String.valueOf(a).getBytes()[0];
         int res3 = a;
         System.out.println((int)a);
         System.out.println((int)A);
-        System.out.println(res);
+        System.out.println(res); */
 
         /*Scanner input = new Scanner(System.in);
         Path path = Path.of(input.nextLine());
@@ -60,6 +60,13 @@ public class Main {
             throw new RuntimeException(e);
         }*/
 
-        Menu.menu();
+        //Menu.menu();
+        /* byte[] bytes = {100, 15};
+        System.out.println(bytes[0]); */
+        byte b = (byte) 'б';
+        System.out.println(b);
+        char c = 'б';
+        System.out.println(c);
+
     }
 }
