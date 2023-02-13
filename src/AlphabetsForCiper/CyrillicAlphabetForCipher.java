@@ -3,7 +3,7 @@ package AlphabetsForCiper;
 import java.util.ArrayList;
 
 //TODO Think about adding decorator
-public class CyrillicAlphabetForCipher implements AlphabetForCiper{
+public class CyrillicAlphabetForCipher extends AlphabetForCiper{
     private static final CyrillicAlphabetForCipher CYRILLIC_ALPHABET_FOR_CIPHER = new CyrillicAlphabetForCipher();
     private static final int START_SYMBOLS_CODE = 32;
     private static final int END_SYMBOLS_CODE = 47;

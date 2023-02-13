@@ -2,6 +2,6 @@ package AlphabetsForCiper;
 
 import java.util.ArrayList;
 
-public interface AlphabetForCiper {
-    public ArrayList<Integer> getCyrillicAlphabetCodesAndSymbols();
+public abstract class AlphabetForCiper {
+    public abstract ArrayList<Integer> getCyrillicAlphabetCodesAndSymbols();
 }

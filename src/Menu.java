@@ -1,13 +1,12 @@
-import java.lang.System.Logger;
+import AlphabetsForCiper.CyrillicAlphabetForCipher;
+
 import java.util.Scanner;
 
 public class Menu {
-    //TODO Maybe delete this parametr
-    private final static int MENU_ITEMS_COUNT = 4;
 
     public static void menu(){
         printWelcomeMessage();
-        printMenu();
+        printMainMenu();
         Scanner input = new Scanner(System.in);
         String selectedItem = input.nextLine();
         while (!isMenuItemCorrect(selectedItem)){
@@ -15,11 +14,22 @@ public class Menu {
                 System.exit(0);
             }
             System.out.println("\nWrong menu item\nTry again\n");
-            printMenu();
+            printMainMenu();
             selectedItem = input.nextLine();
         }
+        printAlphabetMenu();
+        String selectedAlphabetItem = input.nextLine();
+        while (!isAlphabetItemCorrect(selectedAlphabetItem)){
+            if (selectedAlphabetItem.equalsIgnoreCase("2")){
+                System.exit(0);
+            }
+            System.out.println("\nWrong menu item\nTry again\n");
+            printMainMenu();
+            selectedAlphabetItem = input.nextLine();
+        }
+
         input.close();
-        startSelectedOption(selectedItem);
+        startSelectedOption(selectedItem, selectedAlphabetItem);
     }
 
     private static void printWelcomeMessage() {
@@ -28,12 +38,18 @@ public class Menu {
                 .concat("*This program works with cyrillic text and with caesar cipher\n"));
     }
 
-    private static void printMenu() {
+    private static void printMainMenu() {
         System.out.println("Choose the number of option: ");
         System.out.println("1. Encode file");
         System.out.println("2. Decode file with key");
         System.out.println("3. Decode file with brute force");
         System.out.println("4. Exit");
+    }
+
+    private static void printAlphabetMenu() {
+        System.out.println("Choose the language used in your file: ");
+        System.out.println("1. Cyrillic");
+        System.out.println("2. Exit");
     }
 
     private static boolean isMenuItemCorrect(String input){
@@ -44,12 +60,27 @@ public class Menu {
         return result;
     }
 
+    private static boolean isAlphabetItemCorrect(String input){
+        boolean result = switch (input.toLowerCase()){
+            case "1", "2" ->  true;
+            default -> false;
+        };
+        return result;
+    }
+
     //TODO Write when all options will be develop
-    private static void startSelectedOption(String selectedItem){
+    private static void startSelectedOption(String selectedItem, String selectedAlphabetItem){
         switch(selectedItem){
-            case "1" -> CaesarCipher.startEncode();
+            case "1" -> alphabetSelectedOption(selectedAlphabetItem);
             case "2" -> CaesarCipher.startDecode();
-            case "3" -> ;
+            //case "3" -> ;
+            case "4" -> System.exit(0);
+        }
+    }
+
+    private static void alphabetSelectedOption(String selectedItem){
+        switch(selectedItem){
+            case "1" -> CaesarCipher.startEncode(CyrillicAlphabetForCipher.getInstance());
             case "4" -> System.exit(0);
         }
     }

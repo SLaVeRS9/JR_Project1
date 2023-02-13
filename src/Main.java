@@ -4,7 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -63,10 +66,17 @@ public class Main {
         //Menu.menu();
         /* byte[] bytes = {100, 15};
         System.out.println(bytes[0]); */
-        byte b = (byte) 'б';
-        System.out.println(b);
-        char c = 'б';
-        System.out.println(c);
+        /*byte b = (byte) 'а';
+        ByteBuffer bb = ByteBuffer.wrap(new byte[]{(byte)'а', (byte)'б'});
+        //System.out.println(bb);
+        Charset charset = StandardCharsets.UTF_8;
+        CharBuffer c2 = charset.decode(bb);
+        System.out.println(c2.get(0));*/
+        //System.out.println((int)c2);
+        String path = "G:\\MyProjects\\Java\\JR_Project1\\src\\TestFile.txt";
+        //WorkWithFiles.readDataFromFile(path);
+        CaesarCipher.startEncode(CyrillicAlphabetForCipher.getInstance());
+
 
     }
 }
