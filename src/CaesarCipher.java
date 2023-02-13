@@ -102,7 +102,7 @@ public class CaesarCipher {
         return newElement;
     }
 
-
+    //TODO Add custom exception (>0)
     private static int getShiftToEncodeOrDecode(){
         Scanner input = new Scanner(System.in);
         while(!input.hasNextInt()){

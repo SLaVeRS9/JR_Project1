@@ -84,12 +84,10 @@ public class Menu {
     private static AlphabetForCiper alphabetSelectedOption(String selectedItem){
         AlphabetForCiper alphabet = switch(selectedItem){
             case "1" -> CyrillicAlphabetForCipher.getInstance();
-            case "2" -> null; //How can i do exit method there?
-            default -> null;
+            default -> {
+                System.exit(0);
+                yield null;}
         };
-        if (alphabet == null){
-            System.exit(0);
-        }
         return alphabet;
     }
 }
