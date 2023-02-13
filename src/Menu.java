@@ -1,10 +1,11 @@
+import AlphabetsForCiper.AlphabetForCiper;
 import AlphabetsForCiper.CyrillicAlphabetForCipher;
 
 import java.util.Scanner;
 
 public class Menu {
 
-    public static void menu(){
+    public static void startProgram(){
         printWelcomeMessage();
         printMainMenu();
         Scanner input = new Scanner(System.in);
@@ -28,7 +29,6 @@ public class Menu {
             selectedAlphabetItem = input.nextLine();
         }
 
-        input.close();
         startSelectedOption(selectedItem, selectedAlphabetItem);
     }
 
@@ -43,13 +43,15 @@ public class Menu {
         System.out.println("1. Encode file");
         System.out.println("2. Decode file with key");
         System.out.println("3. Decode file with brute force");
-        System.out.println("4. Exit");
+        System.out.println("4. Exit\n");
+        System.out.print("Enter value: ");
     }
 
     private static void printAlphabetMenu() {
         System.out.println("Choose the language used in your file: ");
         System.out.println("1. Cyrillic");
-        System.out.println("2. Exit");
+        System.out.println("2. Exit\n");
+        System.out.print("Enter value: ");
     }
 
     private static boolean isMenuItemCorrect(String input){
@@ -68,20 +70,26 @@ public class Menu {
         return result;
     }
 
-    //TODO Write when all options will be develop
     private static void startSelectedOption(String selectedItem, String selectedAlphabetItem){
         switch(selectedItem){
-            case "1" -> alphabetSelectedOption(selectedAlphabetItem);
-            case "2" -> CaesarCipher.startDecode();
-            //case "3" -> ;
+            case "1" -> {
+                CaesarCipher.startEncode(alphabetSelectedOption(selectedAlphabetItem));
+            }
+            case "2" -> CaesarCipher.startDecode(alphabetSelectedOption(selectedAlphabetItem));
+            //case "3" -> ; TODO Write option for brut force
             case "4" -> System.exit(0);
         }
     }
 
-    private static void alphabetSelectedOption(String selectedItem){
-        switch(selectedItem){
-            case "1" -> CaesarCipher.startEncode(CyrillicAlphabetForCipher.getInstance());
-            case "4" -> System.exit(0);
+    private static AlphabetForCiper alphabetSelectedOption(String selectedItem){
+        AlphabetForCiper alphabet = switch(selectedItem){
+            case "1" -> CyrillicAlphabetForCipher.getInstance();
+            case "2" -> null; //How can i do exit method there?
+            default -> null;
+        };
+        if (alphabet == null){
+            System.exit(0);
         }
+        return alphabet;
     }
 }

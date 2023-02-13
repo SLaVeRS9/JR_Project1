@@ -7,11 +7,20 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class WorkWithFiles {
-    
+
+    protected static Path getFilePath(){
+        Scanner input = new Scanner(System.in);
+        String inputPath = input.nextLine();
+        WorkWithFiles.validatePath(inputPath);
+        Path path = Path.of(inputPath);
+        return path;
+    }
+
     //TODO Создать собственное исключение для работы с файлами
-    public static byte[] readDataFromFile(String stringPath){
+    static byte[] readDataFromFile(String stringPath){
         try {
             RandomAccessFile accessFile = new RandomAccessFile(stringPath, "r");
             FileChannel channel = accessFile.getChannel();
@@ -24,7 +33,6 @@ public class WorkWithFiles {
                 System.out.println("Number of bytes read: " + noOfBytesRead);
                 System.out.println("In arr" + Arrays.toString(byteBuffer.array()));
                 byteBuffer.flip();
-                //charBuffer.put(byteBuffer.asCharBuffer().array());
                 System.out.println(charset.decode(byteBuffer));
                 byteBuffer.clear();
             }
@@ -33,27 +41,6 @@ public class WorkWithFiles {
             throw new RuntimeException(e);
         }
         return new byte[0];
-
-        /*BufferedWriter newBufferedWriter = Files.newBufferedWriter(pathToEncodingFile, StandardCharsets.UTF_8)) {
-            while (newBufferedReader.ready()){
-                int inputValue = newBufferedReader.read();
-                if (alphabetForCipher.getCyrillicAlphabetCodesAndSymbols().contains(inputValue)){
-                    inputValue = encoder(cipherStep, inputValue);
-                }
-                newBufferedWriter.append((char) inputValue);
-                //newBufferedWriter.write(inputValue);
-            }
-            //CharBuffer charBuffer = CharBuffer.allocate(1024);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }*/
-
-
-
-
-        //Start encoding
-        //encoder(cipherStep, dataFromFile);
     }
 
     //TODO Создать собственное исключение для работы с файлами
