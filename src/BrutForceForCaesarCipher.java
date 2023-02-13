@@ -19,10 +19,7 @@ public class BrutForceForCaesarCipher {
         //Прочитать строку (часть данных)
         StringBuilder decodedDataFromFile = mvpBrutForce(path, usingAlphabetSize);
 
-        String fileName = path.getFileName().toString();
-        String decodingFileName = "Decoded_by_BrutForce".concat(fileName);
-        String decodingFileDirectory = path.toFile().getParent();
-        Path pathToEncodingFile = Path.of(decodingFileDirectory.concat("\\").concat(decodingFileName));
+        Path pathToEncodingFile = WorkWithFiles.createFile(path, "Decoded_by_BrutForce");
 
         try {
             Files.writeString(pathToEncodingFile, decodedDataFromFile);
