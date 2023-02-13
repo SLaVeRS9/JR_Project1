@@ -1,10 +1,7 @@
 import AlphabetsForCipher.AlphabetForCipher;
-import AlphabetsForCipher.CyrillicAlphabetForCipher;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CaesarCipher {
@@ -24,10 +21,7 @@ public class CaesarCipher {
         int cipherStep = getShiftToEncodeOrDecode();
 
         //Create new file for encoding data
-        String fileName = path.getFileName().toString();
-        String encodingFileName = "Encoded_".concat(fileName);
-        String encodingFileDirectory = path.toFile().getParent();
-        Path pathToEncodingFile = Path.of(encodingFileDirectory.concat("\\").concat(encodingFileName));
+        Path pathToEncodingFile = WorkWithFiles.createFile(path, "Encoded_");
 
         try {
             String dataFromFile = Files.readString(path);
@@ -48,14 +42,11 @@ public class CaesarCipher {
         int cipherStep = getShiftToEncodeOrDecode();
 
         //Create new file for encoding data
-        String fileName = path.getFileName().toString();
-        String encodingFileName = "Decoded_".concat(fileName);
-        String encodingFileDirectory = path.toFile().getParent();
-        Path pathToEncodingFile = Path.of(encodingFileDirectory.concat("\\").concat(encodingFileName));
+        Path pathToDecodingFile = WorkWithFiles.createFile(path, "Decoded_");
 
         try {
             String dataFromFile = Files.readString(path);
-            Files.writeString(pathToEncodingFile, decoder(cipherStep, dataFromFile));
+            Files.writeString(pathToDecodingFile, decoder(cipherStep, dataFromFile));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
