@@ -19,8 +19,12 @@ class WorkWithFiles {
         return path;
     }
 
-    static Path createFile(String createdFileName){
-
+    static Path createFile(Path path, String operationPrefix){
+        String fileName = path.getFileName().toString();
+        String decodingFileName = operationPrefix.concat(fileName);
+        String decodingFileDirectory = path.toFile().getParent();
+        Path pathToEncodingFile = Path.of(decodingFileDirectory.concat("\\").concat(decodingFileName));
+        return pathToEncodingFile;
     }
 
     //TODO Создать собственное исключение для работы с файлами
