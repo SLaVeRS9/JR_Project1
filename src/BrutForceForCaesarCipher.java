@@ -12,15 +12,17 @@ public class BrutForceForCaesarCipher {
         alphabetForCipher = setAlphabetForCipher;
         int usingAlphabetSize = setAlphabetForCipher.getCyrillicAlphabetCodesAndSymbols().size();
         System.out.println("BrutForce starting...");
-        //Получить файл для декодирования
+        //Get file for decode
         System.out.println("Enter path to file which you want to decode with BrutForce");
         Path path = WorkWithFiles.getFilePath();
 
-        //Прочитать строку (часть данных)
+        //Read data from file
         StringBuilder decodedDataFromFile = mvpBrutForce(path, usingAlphabetSize);
 
+        //Create and get path to file
         Path pathToEncodingFile = WorkWithFiles.createFile(path, "Decoded_by_BrutForce");
 
+        //Write data to file
         try {
             Files.writeString(pathToEncodingFile, decodedDataFromFile);
             System.out.printf("Decoded file created: %s %n", pathToEncodingFile.getFileName().toString());
@@ -30,21 +32,27 @@ public class BrutForceForCaesarCipher {
 
     }
 
+    //Manual hack
     private static StringBuilder mvpBrutForce(Path path, int usingAlphabetSize){
         try {
+            //Get data from file
             List<String> dataFromFile = Files.readAllLines(path);
             int counter = 0;
+            //Get line from data for validation
             int lineNumberToRead = dataFromFile.size() > 1 ? 1 : 0;
             while (counter < usingAlphabetSize){
+                //Decode data
                 StringBuilder decodedLineFromFile = CaesarCipher.decoder(counter, dataFromFile.get(lineNumberToRead), alphabetForCipher);
                 System.out.printf("Iteration %d of %d%n".concat("Is this text correct?%n"), counter, usingAlphabetSize);
                 System.out.println(decodedLineFromFile);
+                //Manual validate result
                 String chosenOption = evaluateBrutForceResult();
                 if(chosenOption.equalsIgnoreCase("1")){
                     break;
                 }
                 counter++;
             }
+            //Decode all data
             return CaesarCipher.decoder(counter,dataFromFile.toString(), alphabetForCipher);
         } catch (IOException e) {
             throw new RuntimeException(e);
