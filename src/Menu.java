@@ -1,5 +1,5 @@
-import AlphabetsForCiper.AlphabetForCiper;
-import AlphabetsForCiper.CyrillicAlphabetForCipher;
+import AlphabetsForCipher.AlphabetForCipher;
+import AlphabetsForCipher.CyrillicAlphabetForCipher;
 
 import java.util.Scanner;
 
@@ -11,25 +11,27 @@ public class Menu {
         Scanner input = new Scanner(System.in);
         String selectedItem = input.nextLine();
         while (!isMenuItemCorrect(selectedItem)){
-            if (selectedItem.equalsIgnoreCase("4")){
-                System.exit(0);
-            }
             System.out.println("\nWrong menu item\nTry again\n");
             printMainMenu();
             selectedItem = input.nextLine();
         }
+        if (selectedItem.equalsIgnoreCase("4")){
+            System.exit(0);
+        }
         printAlphabetMenu();
         String selectedAlphabetItem = input.nextLine();
         while (!isAlphabetItemCorrect(selectedAlphabetItem)){
-            if (selectedAlphabetItem.equalsIgnoreCase("2")){
-                System.exit(0);
-            }
             System.out.println("\nWrong menu item\nTry again\n");
             printMainMenu();
             selectedAlphabetItem = input.nextLine();
         }
-
+        if (selectedAlphabetItem.equalsIgnoreCase("2")){
+            System.exit(0);
+        }
         startSelectedOption(selectedItem, selectedAlphabetItem);
+
+        input.close();
+        System.out.println("\nThank you for choosing our solution!");
     }
 
     private static void printWelcomeMessage() {
@@ -76,13 +78,13 @@ public class Menu {
                 CaesarCipher.startEncode(alphabetSelectedOption(selectedAlphabetItem));
             }
             case "2" -> CaesarCipher.startDecode(alphabetSelectedOption(selectedAlphabetItem));
-            //case "3" -> ; TODO Write option for brut force
-            case "4" -> System.exit(0);
+            case "3" -> BrutForceForCaesarCipher.startBrutForce(alphabetSelectedOption(selectedAlphabetItem));
+            default -> System.exit(0);
         }
     }
 
-    private static AlphabetForCiper alphabetSelectedOption(String selectedItem){
-        AlphabetForCiper alphabet = switch(selectedItem){
+    private static AlphabetForCipher alphabetSelectedOption(String selectedItem){
+        AlphabetForCipher alphabet = switch(selectedItem){
             case "1" -> CyrillicAlphabetForCipher.getInstance();
             default -> {
                 System.exit(0);

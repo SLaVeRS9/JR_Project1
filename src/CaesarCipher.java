@@ -1,18 +1,21 @@
-import AlphabetsForCiper.AlphabetForCiper;
+import AlphabetsForCipher.AlphabetForCipher;
+import AlphabetsForCipher.CyrillicAlphabetForCipher;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CaesarCipher {
-    private static AlphabetForCiper alphabetForCipher;
+    private static AlphabetForCipher alphabetForCipher;
 
     private CaesarCipher(){}
 
     //General encode method
-    public static void startEncode(AlphabetForCiper settedAlphabetForCipher){
+    public static void startEncode(AlphabetForCipher settedAlphabetForCipher){
         alphabetForCipher = settedAlphabetForCipher;
+
         System.out.println("Enter path to file which you want to encode");
         Path path = WorkWithFiles.getFilePath();
 
@@ -35,7 +38,7 @@ public class CaesarCipher {
     }
 
     //General decode method
-    public static void startDecode(AlphabetForCiper settedAlphabetForCipher){
+    public static void startDecode(AlphabetForCipher settedAlphabetForCipher){
         alphabetForCipher = settedAlphabetForCipher;
         System.out.println("Enter path to file which you want to decode");
         Path path = WorkWithFiles.getFilePath();
@@ -74,6 +77,7 @@ public class CaesarCipher {
 
     //Encode int-char element format
     static int encoder(int shift, int encodingElement){
+
         int usingAlphabetSize = alphabetForCipher.getCyrillicAlphabetCodesAndSymbols().size();
         int indexEncodingElementInAlphabet = alphabetForCipher.getCyrillicAlphabetCodesAndSymbols().indexOf(encodingElement);
         int newElementIndex = (indexEncodingElementInAlphabet + (shift % usingAlphabetSize)) % usingAlphabetSize;
@@ -81,7 +85,7 @@ public class CaesarCipher {
         return newElement;
     } 
 
-    static StringBuilder decoder(int shift, String decodingString){
+    private static StringBuilder decoder(int shift, String decodingString){
         char[] chars = decodingString.toCharArray();
         StringBuilder newEncodingString = new StringBuilder();
         for (int i = 0; i < chars.length; i++) {
@@ -94,7 +98,12 @@ public class CaesarCipher {
         return newEncodingString;
     }
 
-    static int decoder(int shift, int encodingElement){
+    protected static StringBuilder decoder(int shift, String decodingString, AlphabetForCipher alphabetForCipher){
+        CaesarCipher.alphabetForCipher = alphabetForCipher;
+        return decoder(shift,decodingString);
+    }
+
+    private static int decoder(int shift, int encodingElement){
         int usingAlphabetSize = alphabetForCipher.getCyrillicAlphabetCodesAndSymbols().size();
         int indexEncodingElementInAlphabet = alphabetForCipher.getCyrillicAlphabetCodesAndSymbols().indexOf(encodingElement);
         int newElementIndex = ((indexEncodingElementInAlphabet + usingAlphabetSize) - (shift % usingAlphabetSize)) % usingAlphabetSize;

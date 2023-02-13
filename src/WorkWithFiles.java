@@ -9,9 +9,9 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class WorkWithFiles {
+class WorkWithFiles {
 
-    protected static Path getFilePath(){
+     static Path getFilePath(){
         Scanner input = new Scanner(System.in);
         String inputPath = input.nextLine();
         WorkWithFiles.validatePath(inputPath);
@@ -19,8 +19,13 @@ public class WorkWithFiles {
         return path;
     }
 
+    static Path createFile(String createdFileName){
+
+    }
+
     //TODO Создать собственное исключение для работы с файлами
-    static byte[] readDataFromFile(String stringPath){
+    //TODO ределиться с архитектурой этого решения
+    private static byte[] readDataFromFile(String stringPath){
         try {
             RandomAccessFile accessFile = new RandomAccessFile(stringPath, "r");
             FileChannel channel = accessFile.getChannel();
@@ -44,12 +49,12 @@ public class WorkWithFiles {
     }
 
     //TODO Создать собственное исключение для работы с файлами
-    public static void validatePath(Path path){
+    static void validatePath(Path path){
             path.isAbsolute();
     }
 
     //TODO Создать собственное исключение для работы с файлами
-    public static void validatePath(String stringPath){
+    static void validatePath(String stringPath){
         Path path = Path.of(stringPath);
         path.isAbsolute();
 }

@@ -1,7 +1,7 @@
-package AlphabetsForCiper;
+package AlphabetsForCipher;
 
 import java.util.ArrayList;
 
-public abstract class AlphabetForCiper {
+public abstract class AlphabetForCipher {
     public abstract ArrayList<Integer> getCyrillicAlphabetCodesAndSymbols();
 }

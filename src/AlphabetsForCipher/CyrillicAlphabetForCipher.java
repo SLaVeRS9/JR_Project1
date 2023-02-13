@@ -1,9 +1,9 @@
-package AlphabetsForCiper;
+package AlphabetsForCipher;
 
 import java.util.ArrayList;
 
 //TODO Think about adding decorator
-public class CyrillicAlphabetForCipher extends AlphabetForCiper{
+public class CyrillicAlphabetForCipher extends AlphabetForCipher {
     private static final CyrillicAlphabetForCipher CYRILLIC_ALPHABET_FOR_CIPHER = new CyrillicAlphabetForCipher();
     private static final int START_SYMBOLS_CODE = 32;
     private static final int END_SYMBOLS_CODE = 47;
@@ -15,10 +15,15 @@ public class CyrillicAlphabetForCipher extends AlphabetForCiper{
     private final ArrayList<Integer> SYMBOLS = new ArrayList<>();
     private final ArrayList<Integer> CYRILLIC_ALPHABET_CODES = new ArrayList<>();
     private final ArrayList<Integer> CYRILLIC_ALPHABET_CODES_AND_SYMBOLS = new ArrayList<>();
+    public ArrayList<Integer> cyrillicAlphabetCodesAndSymbols = new ArrayList<>();
+
 
     private CyrillicAlphabetForCipher(){
         setSymbolsCodes();
         setCyrillicAlphabetCodes();
+        CYRILLIC_ALPHABET_CODES_AND_SYMBOLS.addAll(CYRILLIC_ALPHABET_CODES);
+        CYRILLIC_ALPHABET_CODES_AND_SYMBOLS.addAll(SYMBOLS);
+        cyrillicAlphabetCodesAndSymbols.addAll(CYRILLIC_ALPHABET_CODES_AND_SYMBOLS);
     }
     //Create one object instance of cyrillic alphabet
     public static CyrillicAlphabetForCipher getInstance(){
@@ -27,9 +32,7 @@ public class CyrillicAlphabetForCipher extends AlphabetForCiper{
 
     //Merge cyrillic alphabet codes with general symbols codes and return new object instance
     public ArrayList<Integer> getCyrillicAlphabetCodesAndSymbols(){
-        CYRILLIC_ALPHABET_CODES_AND_SYMBOLS.addAll(CYRILLIC_ALPHABET_CODES);
-        CYRILLIC_ALPHABET_CODES_AND_SYMBOLS.addAll(SYMBOLS);
-        return new ArrayList<>(CYRILLIC_ALPHABET_CODES_AND_SYMBOLS);
+        return cyrillicAlphabetCodesAndSymbols;
     }
 
     //Fill in cyrillic alphabet codes
