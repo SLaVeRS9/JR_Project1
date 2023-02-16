@@ -44,7 +44,7 @@ public class BrutForceForCaesarCipher {
                 //Decode data
                 StringBuilder decodedLineFromFile = CaesarCipher.decoder(counter, dataFromFile.get(lineNumberToRead), alphabet);
                 System.out.printf("Iteration %d of %d%n".concat("Is this text correct?%n"), counter, usingAlphabetSize);
-                System.out.println(decodedLineFromFile);
+                System.out.println("---> " + decodedLineFromFile);
                 //Manual validate result
                 String chosenOption = evaluateBrutForceResult();
                 if(chosenOption.equalsIgnoreCase("1")){
