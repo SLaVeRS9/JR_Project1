@@ -31,7 +31,7 @@ public class CyrillicAlphabetForCipher extends AlphabetForCipher {
     }
 
     //Merge cyrillic alphabet codes with general symbols codes and return new object instance
-    public ArrayList<Integer> getCyrillicAlphabetCodesAndSymbols(){
+    public ArrayList<Integer> getAlphabetCodesAndSymbols(){
         return cyrillicAlphabetCodesAndSymbols;
     }
 
