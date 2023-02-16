@@ -53,7 +53,7 @@ public class BrutForceForCaesarCipher {
                 counter++;
             }
             //Decode all data
-            return CaesarCipher.decoder(counter,dataFromFile.toString(), alphabet);
+            return CaesarCipher.decoder(counter, String.join("\n", dataFromFile), alphabet);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
