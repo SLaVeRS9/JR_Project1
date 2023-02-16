@@ -73,7 +73,7 @@ public class BrutForceForCaesarCipher {
         Scanner input = new Scanner(System.in);
         String selectedItem = input.nextLine();
         while (!isSelectedItemIsCorrect(selectedItem)){
-            System.out.println("\nWrong menu item\nTry again\n");
+            System.out.print("\nWrong menu item\nTry again: ");
             selectedItem = input.nextLine();
         }
         if (selectedItem.equalsIgnoreCase("3")){
