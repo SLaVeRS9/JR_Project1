@@ -26,6 +26,7 @@ public class CaesarCipher {
         try {
             String dataFromFile = Files.readString(path);
             Files.writeString(pathToEncodingFile, encoder(cipherStep, dataFromFile));
+            System.out.println("File has been encoded: ".concat(pathToEncodingFile.getFileName().toString()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -47,6 +48,7 @@ public class CaesarCipher {
         try {
             String dataFromFile = Files.readString(path);
             Files.writeString(pathToDecodingFile, decoder(cipherStep, dataFromFile));
+            System.out.println("File has been decoded with name: ".concat(pathToDecodingFile.getFileName().toString()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
