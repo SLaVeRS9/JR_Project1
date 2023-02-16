@@ -1,12 +1,10 @@
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Scanner;
 
 class WorkWithFiles {
@@ -27,29 +25,30 @@ class WorkWithFiles {
         return pathToEncodingFile;
     }
 
-    //TODO Создать собственное исключение для работы с файлами
-    //TODO ределиться с архитектурой этого решения
-    private static byte[] readDataFromFile(String stringPath){
-        try {
-            RandomAccessFile accessFile = new RandomAccessFile(stringPath, "r");
-            FileChannel channel = accessFile.getChannel();
-            ByteBuffer byteBuffer = ByteBuffer.allocate(2);
-            int noOfBytesRead = channel.read(byteBuffer);
-            CharBuffer charBuffer = CharBuffer.allocate(100);
+
+    //TODO Для попытки реализовать частичное чтение файла с последующей отправкой куска на кодировку\декодировку и чтения нового
+    public static StringBuilder readDataFromFile(String stringPath){
+        StringBuilder dataFromFile = new StringBuilder();
+        try (RandomAccessFile accessFile = new RandomAccessFile(stringPath, "r");
+             FileChannel channel = accessFile.getChannel()) {
+            ByteBuffer byteBuffer = ByteBuffer.allocate((int)channel.size());
+            //CharBuffer charBuffer = CharBuffer.allocate((int)channel.size());
             Charset charset = StandardCharsets.UTF_8;
             while (channel.read(byteBuffer) != -1){
-                //channel.read(byteBuffer);
-                System.out.println("Number of bytes read: " + noOfBytesRead);
-                System.out.println("In arr" + Arrays.toString(byteBuffer.array()));
                 byteBuffer.flip();
-                System.out.println(charset.decode(byteBuffer));
+                dataFromFile.append(charset.decode(byteBuffer));
                 byteBuffer.clear();
+                //System.out.println("In arr" + Arrays.toString(byteBuffer.array()));
+                //System.out.println(dataFromFile);
+                //System.out.println("sds" + byteBuffer.asCharBuffer().toString());
+                //System.out.println("vv"+ charBuffer.put(byteBuffer.asCharBuffer()));
+                //charBuffer = charset.decode(byteBuffer);
+                //System.out.println("fff" + Arrays.toString(charBuffer.array()));
             }
-            System.out.println(charBuffer.length());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return new byte[0];
+        return dataFromFile;
     }
 
     //TODO Создать собственное исключение для работы с файлами
