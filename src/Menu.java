@@ -1,5 +1,5 @@
-import AlphabetsForCipher.AlphabetForCipher;
-import AlphabetsForCipher.CyrillicAlphabetForCipher;
+import AlphabetsForCipher.Alphabet;
+import AlphabetsForCipher.CyrillicAlphabet;
 import AlphabetsForCipher.MainSymbols;
 
 import java.util.Scanner;
@@ -84,17 +84,17 @@ public class Menu {
         }
     }
 
-    private static AlphabetForCipher alphabetSelectedOption(String selectedItem){
-        AlphabetForCipher alphabetForCipher = switch(selectedItem){
+    private static Alphabet alphabetSelectedOption(String selectedItem){
+        Alphabet alphabet = switch(selectedItem){
             case "1" -> {
-                alphabetForCipher = new MainSymbols(CyrillicAlphabetForCipher.getInstance());
-                yield alphabetForCipher;
+                alphabet = new MainSymbols(CyrillicAlphabet.getInstance());
+                yield alphabet;
             }
             default -> {
                 System.exit(0);
                 yield null;
             }
         };
-        return alphabetForCipher;
+        return alphabet;
     }
 }

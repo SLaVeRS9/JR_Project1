@@ -1,17 +1,16 @@
-import AlphabetsForCipher.AlphabetForCipher;
+import AlphabetsForCipher.Alphabet;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class BrutForceForCaesarCipher {
-    private static AlphabetForCipher alphabetForCipher;
-    public static void startBrutForce(AlphabetForCipher setAlphabetForCipher){
-        alphabetForCipher = setAlphabetForCipher;
-        int usingAlphabetSize = setAlphabetForCipher.getCyrillicAlphabetCodesAndSymbols().size();
+    private static Alphabet alphabet;
+    public static void startBrutForce(Alphabet setAlphabet){
+        alphabet = setAlphabet;
+        int usingAlphabetSize = setAlphabet.getAlphabetCodes().size();
         System.out.println("BrutForce starting...");
         //Get file for decode
         System.out.println("Enter path to file which you want to decode with BrutForce");
@@ -43,7 +42,7 @@ public class BrutForceForCaesarCipher {
             int lineNumberToRead = dataFromFile.size() > 1 ? 1 : 0;
             while (counter < usingAlphabetSize){
                 //Decode data
-                StringBuilder decodedLineFromFile = CaesarCipher.decoder(counter, dataFromFile.get(lineNumberToRead), alphabetForCipher);
+                StringBuilder decodedLineFromFile = CaesarCipher.decoder(counter, dataFromFile.get(lineNumberToRead), alphabet);
                 System.out.printf("Iteration %d of %d%n".concat("Is this text correct?%n"), counter, usingAlphabetSize);
                 System.out.println(decodedLineFromFile);
                 //Manual validate result
@@ -54,7 +53,7 @@ public class BrutForceForCaesarCipher {
                 counter++;
             }
             //Decode all data
-            return CaesarCipher.decoder(counter,dataFromFile.toString(), alphabetForCipher);
+            return CaesarCipher.decoder(counter,dataFromFile.toString(), alphabet);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

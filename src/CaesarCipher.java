@@ -1,17 +1,17 @@
-import AlphabetsForCipher.AlphabetForCipher;
+import AlphabetsForCipher.Alphabet;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
 public class CaesarCipher {
-    private static AlphabetForCipher alphabetForCipher;
+    private static Alphabet alphabet;
 
     private CaesarCipher(){}
 
     //General encode method
-    public static void startEncode(AlphabetForCipher settedAlphabetForCipher){
-        alphabetForCipher = settedAlphabetForCipher;
+    public static void startEncode(Alphabet settedAlphabet){
+        alphabet = settedAlphabet;
 
         System.out.println("Enter path to file which you want to encode");
         Path path = WorkWithFiles.getFilePath();
@@ -32,8 +32,8 @@ public class CaesarCipher {
     }
 
     //General decode method
-    public static void startDecode(AlphabetForCipher settedAlphabetForCipher){
-        alphabetForCipher = settedAlphabetForCipher;
+    public static void startDecode(Alphabet settedAlphabet){
+        alphabet = settedAlphabet;
         System.out.println("Enter path to file which you want to decode");
         Path path = WorkWithFiles.getFilePath();
 
@@ -57,7 +57,7 @@ public class CaesarCipher {
         char[] chars = encodingString.toCharArray();
         StringBuilder newEncodingString = new StringBuilder();
         for (int i = 0; i < chars.length; i++) {
-            if (alphabetForCipher.getAlphabetCodesAndSymbols().contains((int)chars[i])){
+            if (alphabet.getAlphabetCodes().contains((int)chars[i])){
                 newEncodingString.append((char)encoder(shift, chars[i]));
             } else {
                 newEncodingString.append(chars[i]);
@@ -69,10 +69,10 @@ public class CaesarCipher {
     //Encode int-char element format
     static int encoder(int shift, int encodingElement){
 
-        int usingAlphabetSize = alphabetForCipher.getAlphabetCodesAndSymbols().size();
-        int indexEncodingElementInAlphabet = alphabetForCipher.getAlphabetCodesAndSymbols().indexOf(encodingElement);
+        int usingAlphabetSize = alphabet.getAlphabetCodes().size();
+        int indexEncodingElementInAlphabet = alphabet.getAlphabetCodes().indexOf(encodingElement);
         int newElementIndex = (indexEncodingElementInAlphabet + (shift % usingAlphabetSize)) % usingAlphabetSize;
-        int newElement = alphabetForCipher.getAlphabetCodesAndSymbols().get(newElementIndex);
+        int newElement = alphabet.getAlphabetCodes().get(newElementIndex);
         return newElement;
     } 
 
@@ -80,7 +80,7 @@ public class CaesarCipher {
         char[] chars = decodingString.toCharArray();
         StringBuilder newEncodingString = new StringBuilder();
         for (int i = 0; i < chars.length; i++) {
-            if (alphabetForCipher.getAlphabetCodesAndSymbols().contains((int)chars[i])){
+            if (alphabet.getAlphabetCodes().contains((int)chars[i])){
                 newEncodingString.append((char)decoder(shift, chars[i]));
             } else {
                 newEncodingString.append(chars[i]);
@@ -89,16 +89,16 @@ public class CaesarCipher {
         return newEncodingString;
     }
 
-    protected static StringBuilder decoder(int shift, String decodingString, AlphabetForCipher alphabetForCipher){
-        CaesarCipher.alphabetForCipher = alphabetForCipher;
+    protected static StringBuilder decoder(int shift, String decodingString, Alphabet alphabet){
+        CaesarCipher.alphabet = alphabet;
         return decoder(shift,decodingString);
     }
 
     private static int decoder(int shift, int encodingElement){
-        int usingAlphabetSize = alphabetForCipher.getAlphabetCodesAndSymbols().size();
-        int indexEncodingElementInAlphabet = alphabetForCipher.getAlphabetCodesAndSymbols().indexOf(encodingElement);
+        int usingAlphabetSize = alphabet.getAlphabetCodes().size();
+        int indexEncodingElementInAlphabet = alphabet.getAlphabetCodes().indexOf(encodingElement);
         int newElementIndex = ((indexEncodingElementInAlphabet + usingAlphabetSize) - (shift % usingAlphabetSize)) % usingAlphabetSize;
-        int newElement = alphabetForCipher.getAlphabetCodesAndSymbols().get(newElementIndex);
+        int newElement = alphabet.getAlphabetCodes().get(newElementIndex);
         return newElement;
     }
 
