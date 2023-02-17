@@ -3,7 +3,7 @@ import AlphabetsForCipher.CyrillicAlphabet;
 import AlphabetsForCipher.MainSymbols;
 import java.util.Scanner;
 
-public class Menu {
+class Menu {
 
     public static void startProgram(){
         printWelcomeMessage();

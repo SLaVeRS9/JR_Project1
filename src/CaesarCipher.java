@@ -4,7 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-public class CaesarCipher {
+class CaesarCipher {
     private static Alphabet alphabet;
 
     private CaesarCipher(){}
