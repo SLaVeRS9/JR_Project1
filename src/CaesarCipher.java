@@ -28,6 +28,7 @@ class CaesarCipher {
             Files.writeString(pathToEncodingFile, encoder(cipherStep, dataFromFile));
             System.out.println("File has been encoded: ".concat(pathToEncodingFile.getFileName().toString()));
         } catch (IOException e) {
+            System.out.println("Check that the coding file in encoding UTF-8");
             throw new RuntimeException(e);
         }
     }
@@ -50,6 +51,7 @@ class CaesarCipher {
             Files.writeString(pathToDecodingFile, decoder(cipherStep, dataFromFile));
             System.out.println("File has been decoded with name: ".concat(pathToDecodingFile.getFileName().toString()));
         } catch (IOException e) {
+            System.out.println("Check that the coding file in encoding UTF-8");
             throw new RuntimeException(e);
         }
     }

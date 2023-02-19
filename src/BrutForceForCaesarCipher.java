@@ -41,6 +41,7 @@ public class BrutForceForCaesarCipher {
             Files.writeString(pathToEncodingFile, decodedDataFromFile);
             System.out.printf("Decoded file created: %s %n", pathToEncodingFile.getFileName().toString());
         } catch (IOException e) {
+            System.out.println("Check that the coding file in encoding UTF-8");
             throw new RuntimeException(e);
         }
     }
@@ -53,7 +54,7 @@ public class BrutForceForCaesarCipher {
             int counter = 0;
             //Get line from data for validation
             int lineNumberToRead = dataFromFile.size() > 1 ? 1 : 0;
-            while (counter < usingAlphabetSize){
+            while (counter <= usingAlphabetSize){
                 //Decode data
                 StringBuilder decodedLineFromFile = CaesarCipher.decoder(counter, dataFromFile.get(lineNumberToRead), alphabet);
                 System.out.printf("Iteration %d of %d%n".concat("Is this text correct?%n"), counter, usingAlphabetSize);
@@ -68,6 +69,7 @@ public class BrutForceForCaesarCipher {
             //Decode all data
             return CaesarCipher.decoder(counter, String.join("\n", dataFromFile), alphabet);
         } catch (IOException e) {
+            System.out.println("Check that the coding file in encoding UTF-8");
             e.printStackTrace();
         }
         return null;
@@ -78,16 +80,19 @@ public class BrutForceForCaesarCipher {
         try {
             String dataFromFile = Files.readString(path);
             int counter = 0;
-            while (counter < usingAlphabetSize){
+            while (counter <= usingAlphabetSize){
                 StringBuilder decodedDataFromFile = CaesarCipher.decoder(counter, dataFromFile, alphabet);
                 int hackResult = HackAnalyzer.analyzeForComplianceWithTheMainPatterns(decodedDataFromFile);
                 if (hackResult == 0) {
-                    System.out.println("Åhe result may be inaccurate :()");
+                    System.out.println("The result may be inaccurate :()\n"
+                            .concat("If decoded file is incorrect y can try again decode this decoded file")
+                    );
                     return decodedDataFromFile;
                 } else if (hackResult > 0){
                     System.out.println("Decodering complete");
                     return decodedDataFromFile;
                 }
+                counter++;
             }
         }
         catch (IOException e) {

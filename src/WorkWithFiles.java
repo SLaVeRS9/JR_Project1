@@ -32,18 +32,11 @@ class WorkWithFiles {
         try (RandomAccessFile accessFile = new RandomAccessFile(stringPath, "r");
              FileChannel channel = accessFile.getChannel()) {
             ByteBuffer byteBuffer = ByteBuffer.allocate((int)channel.size());
-            //CharBuffer charBuffer = CharBuffer.allocate((int)channel.size());
             Charset charset = StandardCharsets.UTF_8;
             while (channel.read(byteBuffer) != -1){
                 byteBuffer.flip();
                 dataFromFile.append(charset.decode(byteBuffer));
                 byteBuffer.clear();
-                //System.out.println("In arr" + Arrays.toString(byteBuffer.array()));
-                //System.out.println(dataFromFile);
-                //System.out.println("sds" + byteBuffer.asCharBuffer().toString());
-                //System.out.println("vv"+ charBuffer.put(byteBuffer.asCharBuffer()));
-                //charBuffer = charset.decode(byteBuffer);
-                //System.out.println("fff" + Arrays.toString(charBuffer.array()));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
