@@ -7,12 +7,12 @@ public class MainSymbols extends AlphabetDecorator {
     private static final int END_SYMBOLS_CODE = 47;
     private final List<Integer> symbols = new ArrayList<>();
     private final List<Integer> immutableAlphabetWithSymbols;
-    Alphabet alphabet;
+    private Alphabet alphabet;
     public MainSymbols(Alphabet alphabet){
         setSymbolsCodes();
         this.alphabet = alphabet;
         List<Integer> alphabetWithSymbols = new ArrayList<>();
-        alphabetWithSymbols.addAll(alphabet.getAlphabetCodes());
+        alphabetWithSymbols.addAll(this.alphabet.getAlphabetCodes());
         alphabetWithSymbols.addAll(symbols);
         immutableAlphabetWithSymbols = List.copyOf(alphabetWithSymbols);
     }
