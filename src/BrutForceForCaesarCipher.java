@@ -1,6 +1,7 @@
 import AlphabetsForCipher.Alphabet;
 
 import java.io.IOException;
+import java.nio.charset.CharacterCodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -40,8 +41,9 @@ public class BrutForceForCaesarCipher {
         try {
             Files.writeString(pathToEncodingFile, decodedDataFromFile);
             System.out.printf("Decoded file created: %s %n", pathToEncodingFile.getFileName().toString());
+        } catch (CharacterCodingException e) {
+            throw new RuntimeException("Check that the coding file in encoding UTF-8");
         } catch (IOException e) {
-            System.out.println("Check that the coding file in encoding UTF-8");
             throw new RuntimeException(e);
         }
     }
@@ -68,11 +70,11 @@ public class BrutForceForCaesarCipher {
             }
             //Decode all data
             return CaesarCipher.decoder(counter, String.join("\n", dataFromFile), alphabet);
+        } catch (CharacterCodingException e) {
+            throw new RuntimeException("Check that the coding file in encoding UTF-8");
         } catch (IOException e) {
-            System.out.println("Check that the coding file in encoding UTF-8");
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     //TODO Will be done in the future when ai analyzer will be done

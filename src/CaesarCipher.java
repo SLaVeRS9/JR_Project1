@@ -1,5 +1,6 @@
 import AlphabetsForCipher.Alphabet;
 import java.io.*;
+import java.nio.charset.CharacterCodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
@@ -27,8 +28,9 @@ class CaesarCipher {
             String dataFromFile = Files.readString(path);
             Files.writeString(pathToEncodingFile, encoder(cipherStep, dataFromFile));
             System.out.println("File has been encoded: ".concat(pathToEncodingFile.getFileName().toString()));
+        } catch (CharacterCodingException e) {
+            throw new RuntimeException("Check that the coding file in encoding UTF-8");
         } catch (IOException e) {
-            System.out.println("Check that the coding file in encoding UTF-8");
             throw new RuntimeException(e);
         }
     }
@@ -50,8 +52,9 @@ class CaesarCipher {
             String dataFromFile = Files.readString(path);
             Files.writeString(pathToDecodingFile, decoder(cipherStep, dataFromFile));
             System.out.println("File has been decoded with name: ".concat(pathToDecodingFile.getFileName().toString()));
+        } catch (CharacterCodingException e) {
+            throw new RuntimeException("Check that the coding file in encoding UTF-8");
         } catch (IOException e) {
-            System.out.println("Check that the coding file in encoding UTF-8");
             throw new RuntimeException(e);
         }
     }
