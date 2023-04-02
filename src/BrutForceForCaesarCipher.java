@@ -21,7 +21,7 @@ public class BrutForceForCaesarCipher {
         Path path = WorkWithFiles.getFilePath();
 
         //choose brut method
-        String brutForceMethod = choiseOfBrutForceMethod();
+        String brutForceMethod = choiceOfBrutForceMethod();
 
         //Read data from file
         StringBuilder decodedDataFromFile = new StringBuilder();
@@ -96,14 +96,15 @@ public class BrutForceForCaesarCipher {
                 }
                 System.out.println("Sorry we can't encode this file :(");
             }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+        } catch (CharacterCodingException e) {
+            throw new RuntimeException("Check that the coding file in encoding UTF-8");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
 
-    private static String choiseOfBrutForceMethod(){
+    private static String choiceOfBrutForceMethod(){
         System.out.println("Choose the brut force item method to decode:\n"
         .concat("1. Manual\n")
         .concat("2. With auto analyzer"));
