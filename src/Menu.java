@@ -35,25 +35,31 @@ class Menu {
     }
 
     private static void printWelcomeMessage() {
-        System.out.println("Hello! Its your personal files encoder and decoder!\n"
-                .concat("Also you can break encoder file\n")
-                .concat("*This program works with cyrillic text and with caesar cipher\n"));
+        System.out.println("""
+                Hello! Its your personal files encoder and decoder!
+                Also you can break encoder file
+                *This program works with cyrillic text and with caesar cipher
+                """);
     }
 
     private static void printMainMenu() {
-        System.out.println("Choose the number of option: ");
-        System.out.println("1. Encode file");
-        System.out.println("2. Decode file with key");
-        System.out.println("3. Decode file with brute force");
-        System.out.println("4. Exit\n");
-        System.out.print("Enter value: ");
+        System.out.println("""
+                Choose the number of option:
+                1. Encode file
+                2. Decode file with key
+                3. Decode file with brute force
+                4. Exit
+                Enter value:
+                """);
     }
 
     private static void printAlphabetMenu() {
-        System.out.println("Choose the language used in your file: ");
-        System.out.println("1. Cyrillic");
-        System.out.println("2. Exit\n");
-        System.out.print("Enter value: ");
+        System.out.println("""
+                Choose the language used in your file:
+                1. Cyrillic
+                2. Exit
+                Enter value:
+                """);
     }
 
     private static boolean isMenuItemCorrect(String input){

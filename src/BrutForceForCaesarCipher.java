@@ -77,7 +77,6 @@ public class BrutForceForCaesarCipher {
         }
     }
 
-    //TODO Will be done in the future when ai analyzer will be done
     private static StringBuilder startBrutForceWithAnalyzer(Path path, int usingAlphabetSize){
         try {
             String dataFromFile = Files.readString(path);
@@ -86,9 +85,8 @@ public class BrutForceForCaesarCipher {
                 StringBuilder decodedDataFromFile = CaesarCipher.decoder(counter, dataFromFile, alphabet);
                 int hackResult = HackAnalyzer.analyzeForComplianceWithTheMainPatterns(decodedDataFromFile);
                 if (hackResult == 0) {
-                    System.out.println("The result may be inaccurate :()\n"
-                            .concat("If decoded file is incorrect y can try again decode this decoded file")
-                    );
+                    System.out.println("The result may be inaccurate :()\n" +
+                            "If decoded file is incorrect y can try again decode this decoded file");
                     return decodedDataFromFile;
                 } else if (hackResult > 0){
                     System.out.println("Decodering complete");
@@ -105,9 +103,10 @@ public class BrutForceForCaesarCipher {
     }
 
     private static String choiceOfBrutForceMethod(){
-        System.out.println("Choose the brut force item method to decode:\n"
-        .concat("1. Manual\n")
-        .concat("2. With auto analyzer"));
+        System.out.println("""
+                Choose the brut force item method to decode:
+                1. Manual
+                2. With auto analyzer""");
         Scanner input = new Scanner(System.in);
         String selectedItem = input.nextLine();
         while (true){
@@ -122,12 +121,14 @@ public class BrutForceForCaesarCipher {
     }
 
     private static String evaluateBrutForceResult(){
-        System.out.println("Choose the number of option: ");
-        System.out.println("1. Text is correct");
-        System.out.println("2. Text isn't readable");
-        System.out.println("3. Exit\n");
-        System.out.print("Enter value: ");
-
+        System.out.println("""
+                Choose the number of option:
+                1. Text is correct
+                2. Text isn't readable
+                3. Exit
+                
+                Enter value:
+                """);
         Scanner input = new Scanner(System.in);
         String selectedItem = input.nextLine();
         while (!isSelectedItemIsCorrect(selectedItem)){
@@ -141,11 +142,10 @@ public class BrutForceForCaesarCipher {
     }
 
     private static boolean isSelectedItemIsCorrect(String input){
-        boolean result = switch (input.toLowerCase()){
+        return switch (input.toLowerCase()){
             case "1", "2", "3" ->  true;
             default -> false;
         };
-        return result;
     }
 
 }

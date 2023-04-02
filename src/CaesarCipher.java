@@ -116,8 +116,8 @@ class CaesarCipher {
             if (input.nextLine().equalsIgnoreCase("exit")){
                 System.exit(0);
             }
-            System.out.println("Entered incorrect value (it must be a positive integer)");
-            System.out.print("Try again or write 'exit' to quit: ");
+            System.out.println("Entered incorrect value (it must be a positive integer)\n" +
+                    "Try again or write 'exit' to quit: ");
         }
         int cipherStep = input.nextInt();
         return cipherStep;
