@@ -9,7 +9,7 @@ class HackAnalyzer {
     //return 0 if there is one match
     //return 1 if there are more than one matches
     static int analyzeForComplianceWithTheMainPatterns(StringBuilder analyzedText){
-        int count = -1;
+        int count;
         count = analyzeForFirstPattern(analyzedText);
         return count;
     }
