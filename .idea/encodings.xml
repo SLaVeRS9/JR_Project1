@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/AlphabetsForCipher/Alphabet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/AlphabetsForCipher/CyrillicAlphabet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/CaesarCipher.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Menu.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/NewTestFile.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/TestFile.txt" charset="UTF-8" />
+  </component>
+</project>
