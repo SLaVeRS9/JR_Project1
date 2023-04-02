@@ -56,7 +56,7 @@ public class BrutForceForCaesarCipher {
             int counter = 0;
             //Get line from data for validation
             int lineNumberToRead = dataFromFile.size() > 1 ? 1 : 0;
-            while (counter <= usingAlphabetSize){
+            for (int i = 0; i < usingAlphabetSize; i++) {
                 //Decode data
                 StringBuilder decodedLineFromFile = CaesarCipher.decoder(counter, dataFromFile.get(lineNumberToRead), alphabet);
                 System.out.printf("Iteration %d of %d%n".concat("Is this text correct?%n"), counter, usingAlphabetSize);
@@ -66,7 +66,7 @@ public class BrutForceForCaesarCipher {
                 if(chosenOption.equalsIgnoreCase("1")){
                     break;
                 }
-                counter++;
+                System.out.println("Sorry we can't encode this file :(");
             }
             //Decode all data
             return CaesarCipher.decoder(counter, String.join("\n", dataFromFile), alphabet);
@@ -82,7 +82,7 @@ public class BrutForceForCaesarCipher {
         try {
             String dataFromFile = Files.readString(path);
             int counter = 0;
-            while (counter <= usingAlphabetSize){
+            for (int i = 0; i < usingAlphabetSize; i++) {
                 StringBuilder decodedDataFromFile = CaesarCipher.decoder(counter, dataFromFile, alphabet);
                 int hackResult = HackAnalyzer.analyzeForComplianceWithTheMainPatterns(decodedDataFromFile);
                 if (hackResult == 0) {
@@ -94,7 +94,7 @@ public class BrutForceForCaesarCipher {
                     System.out.println("Decodering complete");
                     return decodedDataFromFile;
                 }
-                counter++;
+                System.out.println("Sorry we can't encode this file :(");
             }
         }
         catch (IOException e) {
