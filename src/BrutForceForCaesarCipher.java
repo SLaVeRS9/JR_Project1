@@ -11,6 +11,7 @@ public class BrutForceForCaesarCipher {
     private static Alphabet alphabet;
     private static final String MANUAL_BRUT_FORCE = "manual";
     private static final String BRUT_FORCE_WITH_ANALYZER = "analyzer";
+    private static final String INCORRECT_CHOICE = "incorrect choice";
 
     public static void startBrutForce(Alphabet setAlphabet){
         alphabet = setAlphabet;
@@ -92,8 +93,8 @@ public class BrutForceForCaesarCipher {
                     System.out.println("Decodering complete");
                     return decodedDataFromFile;
                 }
-                System.out.println("Sorry we can't encode this file :(");
             }
+            System.out.println("Sorry we can't encode this file :(");
         } catch (CharacterCodingException e) {
             throw new RuntimeException("Check that the coding file in encoding UTF-8");
         } catch (IOException e) {
@@ -106,18 +107,22 @@ public class BrutForceForCaesarCipher {
         System.out.println("""
                 Choose the brut force item method to decode:
                 1. Manual
-                2. With auto analyzer""");
+                2. With auto analyzer
+                """);
         Scanner input = new Scanner(System.in);
-        String selectedItem = input.nextLine();
-        while (true){
-            if (selectedItem.equalsIgnoreCase("1")){
-                return MANUAL_BRUT_FORCE;
-            } else if (selectedItem.equalsIgnoreCase("2")){
-                return BRUT_FORCE_WITH_ANALYZER;
-            } else {
-                System.out.println("\nWrong menu item\nTry again: ");
-            }
+        String choice = INCORRECT_CHOICE;
+        while (choice.equals(INCORRECT_CHOICE)){
+            String selectedItem = input.nextLine();
+            choice = switch (selectedItem){
+                case "1" -> MANUAL_BRUT_FORCE;
+                case "2" -> BRUT_FORCE_WITH_ANALYZER;
+                default -> {
+                    System.out.println(INCORRECT_CHOICE);
+                    yield INCORRECT_CHOICE;
+                }
+            };
         }
+        return choice;
     }
 
     private static String evaluateBrutForceResult(){
