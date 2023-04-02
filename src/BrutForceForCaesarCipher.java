@@ -19,7 +19,7 @@ public class BrutForceForCaesarCipher {
         System.out.println("BrutForce starting...");
         //Get file for decode
         System.out.println("Enter path to file which you want to decode with BrutForce");
-        Path path = WorkWithFiles.getFilePath();
+        Path path = FileWorker.getFilePath();
 
         //choose brut method
         String brutForceMethod = choiceOfBrutForceMethod();
@@ -36,7 +36,7 @@ public class BrutForceForCaesarCipher {
         }
         
         //Create and get path to file
-        Path pathToEncodingFile = WorkWithFiles.createFile(path, "Decoded_by_BrutForce");
+        Path pathToEncodingFile = FileWorker.createFile(path, "Decoded_by_BrutForce");
 
         //Write data to file
         try {

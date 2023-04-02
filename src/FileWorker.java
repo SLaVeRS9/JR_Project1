@@ -7,12 +7,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-class WorkWithFiles {
+class FileWorker {
 
      static Path getFilePath(){
         Scanner input = new Scanner(System.in);
         String inputPath = input.nextLine();
-        WorkWithFiles.validatePath(inputPath);
+        FileWorker.validatePath(inputPath);
         Path path = Path.of(inputPath);
         return path;
     }

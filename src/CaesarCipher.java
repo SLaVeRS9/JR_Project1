@@ -15,14 +15,14 @@ class CaesarCipher {
         alphabet = settedAlphabet;
 
         System.out.println("Enter path to file which you want to encode");
-        Path path = WorkWithFiles.getFilePath();
+        Path path = FileWorker.getFilePath();
 
         //Get shift for encoder
         System.out.println("Enter step to file which you want to encode");
         int cipherStep = getShiftToEncodeOrDecode();
 
         //Create new file for encoding data
-        Path pathToEncodingFile = WorkWithFiles.createFile(path, "Encoded_");
+        Path pathToEncodingFile = FileWorker.createFile(path, "Encoded_");
 
         try {
             String dataFromFile = Files.readString(path);
@@ -39,14 +39,14 @@ class CaesarCipher {
     public static void startDecode(Alphabet settedAlphabet){
         alphabet = settedAlphabet;
         System.out.println("Enter path to file which you want to decode");
-        Path path = WorkWithFiles.getFilePath();
+        Path path = FileWorker.getFilePath();
 
         //Get shift for decoder
         System.out.println("Enter step which file has been encoded");
         int cipherStep = getShiftToEncodeOrDecode();
 
         //Create new file for encoding data
-        Path pathToDecodingFile = WorkWithFiles.createFile(path, "Decoded_");
+        Path pathToDecodingFile = FileWorker.createFile(path, "Decoded_");
 
         try {
             String dataFromFile = Files.readString(path);
